@@ -40,6 +40,8 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
     "react": "^0.14.0",
     "react-dom": "^0.14.0"
   }
