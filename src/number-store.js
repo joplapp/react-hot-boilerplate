@@ -14,10 +14,18 @@ var NumberStore = createStore({
     return this.state
   },
 
-  onSelect(number){
-    // clone the number object here, as we might have gotten it from somewhere else
-    this.state.number = Object.assign({}, number)
+  onLoad(){
+    this.state.loading = true
+    this.state.error = false
     this.trigger(this.state)
+  },
+  onLoadCompleted(number){
+    this.state.loading = false
+    this.state.number = number
+    this.trigger(this.state)
+  },
+  onLoadFailed(){
+    // do sth here
   },
 
   onModify(){

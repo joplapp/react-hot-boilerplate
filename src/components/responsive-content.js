@@ -1,14 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import {IsPageLarge } from './is-page-large'
 
-/*
- ╔═════════╗       ╔════════╗       ╔══════════╗
- ║ Actions        ║───>║ Stores       ║───>║ View Components ║
- ╚═════════╝       ╚════════╝       ╚═════════╝
-       ^                                                  │
-      └─────────────────────────────┘
 
- */
 class ResponsiveContent extends Component {
 
   render() {

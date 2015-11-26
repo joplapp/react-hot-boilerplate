@@ -8,13 +8,13 @@ var NumbersActions = createActions({
 });
 
 NumbersActions.load.listen(function(){
-  return fetch('api/numbers')
+  return fetch('/api/numbers')
     .then((resp) => resp.json())
     .then(this.completed, this.failed)
 })
 
 NumbersActions.add.listen(function(number){
-  return fetch('api/numbers', {
+  return fetch('/api/numbers', {
     method: 'post',
     headers: {
       'Accept': 'application/json',

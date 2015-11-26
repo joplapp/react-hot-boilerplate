@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import Number from './number'
 import numbersStore from '../numbers-store'
 import { connect } from 'reflux'
@@ -27,11 +28,15 @@ var NumbersList = React.createClass({
     return (
       <ul>
         {this.state.numbers.map((number) =>
-          <li onClick={() => NumberActions.select(number)} key={number.id}>
-            <Number number={number} />
+          <li key={number.id}>
+            <Link to={"/numbers/"+number.id}>
+              <Number number={number} />
+            </Link>
           </li>
         )}
         <li><input type="text" ref="input"/><button onClick={this.addNumber}>Add</button></li>
+
+        {this.props.children}
       </ul>
     );
   }

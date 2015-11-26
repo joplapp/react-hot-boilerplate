@@ -6,10 +6,9 @@ var app = express();
 
 var isProduction = process.env.NODE_ENV === 'production';
 var port = isProduction ? process.env.PORT : 3030;
-var publicPath = path.resolve(__dirname, 'public');
+var publicPath = path.resolve(__dirname, 'dist');
 
-app.use(express.static(publicPath));
-
+app.use('/static', express.static(publicPath));
 app.use(bodyParser.json());
 
 // And run the server
@@ -30,6 +29,17 @@ var numbers = [1,1,2,3,5,8,13,21].map(function(n, index){
 
 app.get('/api/numbers', function(req, res){
 	res.send(numbers);
+});
+
+
+app.get('/api/numbers/:id', function(req, res){
+  var id = parseInt(req.params.id);
+
+  var number = numbers.filter(function(n){
+    return n.id === id
+  })[0];
+
+  res.send(number);
 });
 
 
@@ -69,4 +79,9 @@ app.delete('/api/numbers/:id', function(req, res){
 	var removed = numbers.splice(numbers.indexOf(number),1)
 
 	res.send(removed);
+});
+
+// always send index.html if no route matches
+app.get('*', function(req, res){
+  res.sendFile(__dirname + '/index.html');
 });

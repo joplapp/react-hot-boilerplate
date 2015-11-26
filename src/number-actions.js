@@ -2,13 +2,19 @@ import { createActions } from 'reflux'
 
 
 var NumberActions = createActions({
-  select: {},
+  load: {asyncResult: true},
   modify: {asyncResult: true},
   double: {}
 });
 
+NumberActions.load.listen(function(id){
+  return fetch('/api/numbers/'+id)
+    .then((resp) => resp.json())
+    .then(this.completed, this.failed)
+})
+
 NumberActions.modify.listen(function(id, value){
-  return fetch('api/numbers/'+id, {
+  return fetch('/api/numbers/'+id, {
     method: 'put',
     headers: {
       'Accept': 'application/json',
