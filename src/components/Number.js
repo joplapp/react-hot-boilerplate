@@ -1,9 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 export default class Number extends Component {
   render() {
+    let number = this.props.number
+
     return (
-      <h1>Hello, world.</h1>
+      <span style={{color: number.even ? 'green' : 'red'}}>
+        {number.number}
+      </span>
     )
   }
+}
+
+Number.PropTypes = {
+  number: PropTypes.number.required,
+  even: PropTypes.bool
 }

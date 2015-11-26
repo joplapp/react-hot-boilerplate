@@ -26,9 +26,7 @@ var NumbersList = React.createClass({
     return (
       <ul>
         {this.state.numbers.map((number) =>
-          <li>
-            {number.number}
-          </li>
+          <li><Number number={number} /></li>
         )}
         <li><input type="text" ref="input"/><button onClick={this.addNumber}>Add</button></li>
       </ul>
