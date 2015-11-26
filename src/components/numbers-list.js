@@ -3,6 +3,7 @@ import Number from './number'
 import numbersStore from '../numbers-store'
 import { connect } from 'reflux'
 import NumbersActions from '../numbers-actions'
+import NumberActions from '../number-actions'
 
 
 var NumbersList = React.createClass({
@@ -26,7 +27,9 @@ var NumbersList = React.createClass({
     return (
       <ul>
         {this.state.numbers.map((number) =>
-          <li><Number number={number} /></li>
+          <li onClick={() => NumberActions.select(number)} key={number.id}>
+            <Number number={number} />
+          </li>
         )}
         <li><input type="text" ref="input"/><button onClick={this.addNumber}>Add</button></li>
       </ul>

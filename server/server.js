@@ -18,32 +18,53 @@ app.listen(port, function () {
 });
 
 
-var numbers = [1,1,2,3,5,8,13,21];
+// CRUD API for 'numbers'
+
+var numbers = [1,1,2,3,5,8,13,21].map(function(n, index){
+  return {
+    value: n,
+    id: index
+  }
+});
+
 
 app.get('/api/numbers', function(req, res){
-	var result = numbers.map(function(n){
-		return {
-			number: n,
-			even: n%2 == 0
-		}
-	});
-	res.send(result);
+	res.send(numbers);
 });
 
 
 app.post('/api/numbers', function(req, res){
 	var number = parseInt(req.body.number);
-	numbers.push(number);
+  var newEntry = {
+    value: number,
+    id: numbers.length
+  };
+	numbers.push(newEntry);
 
-	res.send({
-		number: number,
-		even: number%2 == 0
-	});
+	res.send(newEntry);
 });
 
-app.delete('/api/numbers', function(req, res){
 
-	var number = parseInt(req.body.number);
+// 'modify' a number ( = replace it by a different one)
+app.put('/api/numbers/:id', function(req, res){
+  var id = parseInt(req.params.id);
+
+  var number = numbers.filter(function(n){
+    return n.id === id
+  })[0]
+
+  number.value = parseInt(req.body.value);
+
+  res.send(number);
+});
+
+
+app.delete('/api/numbers/:id', function(req, res){
+  var id = parseInt(req.params.id);
+
+  var number = numbers.filter(function(n){
+    return n.id === id
+  })[0];
 
 	var removed = numbers.splice(numbers.indexOf(number),1)
 

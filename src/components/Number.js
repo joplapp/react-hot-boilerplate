@@ -5,14 +5,13 @@ export default class Number extends Component {
     let number = this.props.number
 
     return (
-      <span style={{color: number.even ? 'green' : 'red'}}>
-        {number.number}
+      <span style={{color: number.value%2===0 ? 'green' : 'red'}}>
+        {number.value}
       </span>
     )
   }
 }
 
 Number.PropTypes = {
-  number: PropTypes.number.required,
-  even: PropTypes.bool
+  value: PropTypes.number.isRequired
 }
