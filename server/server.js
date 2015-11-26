@@ -32,12 +32,20 @@ app.get('/api/numbers', function(req, res){
 
 
 app.post('/api/numbers', function(req, res){
-	console.log(req.body.number)
-	var number = req.body.number;
+	var number = parseInt(req.body.number);
 	numbers.push(number);
 
 	res.send({
 		number: number,
 		even: number%2 == 0
 	});
+});
+
+app.delete('/api/numbers', function(req, res){
+
+	var number = parseInt(req.body.number);
+
+	var removed = numbers.splice(numbers.indexOf(number),1)
+
+	res.send(removed);
 });

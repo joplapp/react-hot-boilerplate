@@ -1,27 +1,6 @@
 import { createStore } from 'reflux'
 import actions from './numbers-actions'
 
-export default createStore({
-  listenables: actions,
-
-  state: {
-    loading: true,
-    numbers: null
-  },
-  onLoad(){
-    this.state.loading = true
-    this.state.numbers = null
-    this.trigger(this.state)
-  },
-  onLoadCompleted(result){
-    this.state.loading = false
-    this.state.numbers = result
-    this.trigger(this.state)
-  },
-  onLoadFailed(){//..
-  }
-});
-
 
 export default createStore({
   listenables: actions,
@@ -51,7 +30,8 @@ export default createStore({
     this.trigger(this.state)
   },
 
-  onAddCompleted(){
-    actions.load()
+  onAddCompleted(added){
+    this.state.numbers.push(added)
+    this.trigger(this.state)
   }
 });
