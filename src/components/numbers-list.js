@@ -5,7 +5,7 @@ import numbersStore from '../numbers-store'
 import { connect } from 'reflux'
 import NumbersActions from '../numbers-actions'
 import NumberActions from '../number-actions'
-
+import { FormattedMessage } from 'react-intl'
 
 var NumbersList = React.createClass({
   mixins: [connect(numbersStore)],
@@ -27,6 +27,17 @@ var NumbersList = React.createClass({
     }
     return (
       <ul>
+        <li>
+          <FormattedMessage
+            id="numbers count"
+            description="Counter for numbers"
+            defaultMessage="{count} {count, plural,
+                zero {Numbers}
+                one {Number}
+                other {Numbers}}"
+            values={{count: this.state.numbers.length}}
+          />
+        </li>
         {this.state.numbers.map((number) =>
           <li key={number.id}>
             <Link to={"/numbers/"+number.id}>
