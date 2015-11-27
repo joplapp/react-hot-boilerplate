@@ -43,6 +43,7 @@
     "babel-plugin-react-intl": "^2.0.0",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
+    "formsy-react": "^0.17.0",
     "history": "^1.13.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",

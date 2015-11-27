@@ -14,6 +14,8 @@ const deMessages = {
     other {Zahlen}}`
 }
 
+const enMessages = {}
+
 
 ReactDOM.render(<IntlProvider locale="de" messages={deMessages}>
     <RoutedApp />
