@@ -20,7 +20,9 @@ export default class App extends Component {
 
   render() {
     return (<div>
-      <h1>Hello, {this.state.country}.</h1>
+      <h1>
+        Hello, {this.state.country}. <img src={FLAGS[this.state.country]} />
+      </h1>
 
       <ColoredButton color="green" onClick={() => this.changeCountry()}>
         Say Hello to Germany
@@ -29,4 +31,9 @@ export default class App extends Component {
       {/*<Table rows={6} columns={5} />*/}
     </div>);
   }
+}
+
+const FLAGS = {
+  Germany: 'http://forum.postcrossing.com/images/country/Germany.gif',
+  Ukraine: 'http://findicons.com/files/icons/952/country_flag/16/ukraine_flag.png'
 }
