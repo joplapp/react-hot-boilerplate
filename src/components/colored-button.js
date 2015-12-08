@@ -1,14 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 
-export default class ColoredButton extends Component {
 
-  shouldComponentUpdate(nextProps, nextState){
-    return nextProps.color !== this.props.color
-  }
+export default class ColoredButton extends Component {
 
   render() {
     return (
-      <button style={{color: this.props.color}}>
+      <button {...this.props} style={{color: this.props.color}}>
         {this.props.children}
       </button>
     )
